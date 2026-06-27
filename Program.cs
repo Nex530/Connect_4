@@ -30,7 +30,7 @@ namespace Connect_4
         static bool fourDiagonalsWin(char symbol, char[][] matrix, int offsetRows, int offsetColumns)
         {
             if ((matrix[0 + offsetRows][0 + offsetColumns] == symbol && matrix[1 + offsetRows][1 + offsetColumns] == symbol && matrix[2 + offsetRows][2 + offsetColumns] == symbol && matrix[3 + offsetRows][3 + offsetColumns] == symbol) || (
-                matrix[1 + offsetRows][3 + offsetColumns] == symbol && matrix[1 + offsetRows][2 + offsetColumns] == symbol && matrix[2 + offsetRows][1 + offsetColumns] == symbol && matrix[3 + offsetRows][0 + offsetColumns] == symbol))
+                matrix[0 + offsetRows][3 + offsetColumns] == symbol && matrix[1 + offsetRows][2 + offsetColumns] == symbol && matrix[2 + offsetRows][1 + offsetColumns] == symbol && matrix[3 + offsetRows][0 + offsetColumns] == symbol))
             {
                 return true; 
             }
@@ -77,7 +77,10 @@ namespace Connect_4
                 }
             }
 
-
+            if (diagonalWin('x',matrix))
+            {
+                return true;
+            }
 
             return false;
         }
@@ -106,23 +109,13 @@ namespace Connect_4
                 }
             }
 
-
+            if (diagonalWin('o', matrix))
+            {
+                return true;
+            }
 
             return false;
         }
-
-
-        static bool submatrixDiagWinX(char[][] submatrix) 
-        {
-            return (submatrix[0][0] == 'x' && submatrix[1][1] == 'x' && submatrix[2][2] == 'x' && submatrix[3][3] == 'x') ||
-                (submatrix[0][3] == 'x' && submatrix[1][2] == 'x' && submatrix[2][1] == 'x' && submatrix[3][0] == 'x'); 
-        }
-        static bool submatrixDiagWinO(char[][] submatrix)
-        {
-            return (submatrix[0][0] == 'o' && submatrix[1][1] == 'o' && submatrix[2][2] == 'o' && submatrix[3][3] == 'o') ||
-                (submatrix[0][3] == 'o' && submatrix[1][2] == 'o' && submatrix[2][1] == 'o' && submatrix[3][0] == 'o');
-        }
-
         static void Main(string[] args)
         {
             char[][] matrix = [['_', '_', '_', '_', '_', '_', '_'],
@@ -168,8 +161,8 @@ namespace Connect_4
                 Print(matrix);
 
                 if (xWins(matrix) ) { Console.WriteLine("X wins."); break; }
+                if (oWins(matrix)) { Console.WriteLine("O wins."); break; }
             }
-            //for ( )
         }
     }
 }

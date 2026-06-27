@@ -19,12 +19,22 @@ namespace Connect_4
         {
             for (int i = 5; i >= 0; i--)
             {
-                if (matrix[i][columns-1] == '_')
+                if (matrix[i][columns - 1] == '_')
                 {
                     return i;
                 }
             }
             return 0;
+        }
+
+        static bool fourDiagonalsWin(char symbol, char[][] matrix4By4, int offsetRows, int offsetColumns)
+        {
+            if ((matrix4By4[0+offsetRows][0+offsetColumns] == symbol && matrix4By4[1+offsetRows][1+offsetColumns] == symbol && matrix4By4[2+offsetRows][2+offsetColumns] == symbol && matrix4By4[3+offsetRows][3+offsetColumns] == symbol) || (
+                matrix4By4[1+offsetRows][3+offsetColumns] == symbol && matrix4By4[1+offsetRows][2+offsetColumns] == symbol && matrix4By4[2+offsetRows][1+offsetColumns] == symbol && matrix4By4[3+offsetRows][0+offsetColumns] == symbol))
+            {
+                return true; 
+            }
+            return false;
         }
 
         static bool xWins(char[][]matrix)
@@ -145,7 +155,7 @@ namespace Connect_4
 
                 if (xWins(matrix) ) { Console.WriteLine("X wins."); break; }
             }
-            for ( )
+            //for ( )
         }
     }
 }

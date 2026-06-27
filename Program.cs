@@ -27,12 +27,26 @@ namespace Connect_4
             return 0;
         }
 
-        static bool fourDiagonalsWin(char symbol, char[][] matrix4By4, int offsetRows, int offsetColumns)
+        static bool fourDiagonalsWin(char symbol, char[][] matrix, int offsetRows, int offsetColumns)
         {
-            if ((matrix4By4[0+offsetRows][0+offsetColumns] == symbol && matrix4By4[1+offsetRows][1+offsetColumns] == symbol && matrix4By4[2+offsetRows][2+offsetColumns] == symbol && matrix4By4[3+offsetRows][3+offsetColumns] == symbol) || (
-                matrix4By4[1+offsetRows][3+offsetColumns] == symbol && matrix4By4[1+offsetRows][2+offsetColumns] == symbol && matrix4By4[2+offsetRows][1+offsetColumns] == symbol && matrix4By4[3+offsetRows][0+offsetColumns] == symbol))
+            if ((matrix[0 + offsetRows][0 + offsetColumns] == symbol && matrix[1 + offsetRows][1 + offsetColumns] == symbol && matrix[2 + offsetRows][2 + offsetColumns] == symbol && matrix[3 + offsetRows][3 + offsetColumns] == symbol) || (
+                matrix[1 + offsetRows][3 + offsetColumns] == symbol && matrix[1 + offsetRows][2 + offsetColumns] == symbol && matrix[2 + offsetRows][1 + offsetColumns] == symbol && matrix[3 + offsetRows][0 + offsetColumns] == symbol))
             {
                 return true; 
+            }
+            return false;
+        }
+        static bool diagonalWin(char symbol, char[][] matrix)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    if (fourDiagonalsWin(symbol, matrix, i, j))
+                    {
+                        return true;
+                    }
+                }
             }
             return false;
         }
